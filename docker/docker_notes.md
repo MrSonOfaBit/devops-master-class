@@ -129,6 +129,11 @@ Show detailed container info
 docker container inspect <ContainerID>
 ```
 ---
+Show stats of a specific container
+```bash
+docker stats <ContainerID>
+```
+---
 Show all local docker images
 ```bash
 docker images
@@ -169,4 +174,29 @@ Show docker disk usage
 docker system df
 ```
 > ⓘ Active images from the output means the amount of images that is referenced with a container 
+---
+Show realtime events from the server
+```bash
+docker system events
+```
+---
+Display system-wide information
+```bash
+docker system info
+```
+---
+Remove unused data on the server
+```bash
+docker system prune
+```
+---
+Remove all unused data on the server
+```bash
+docker system prune -a
+```
+> ⓘ WARNING! This will remove 
+> - all stopped containers
+> - all networks not used by at least one container
+> - all images without at least one container associated to them
+> - all build cache
 ---
