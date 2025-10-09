@@ -49,9 +49,9 @@ This Component will process everything. Build your images, start and stop your c
 
 ## Docker Commands
 Hints
-> When selecting a container/image ID you can only select the first unique digits to use the ID
+> ⓘ When selecting a container/image ID you can only select the first unique digits to use the ID
 
-> "docker run" is a shortcut for "docker container run" Same shortcut goes for similar commands
+> ⓘ "docker run" is a shortcut for "docker container run" Same shortcut goes for similar commands
 
 Run image inside a docker container
 ```bash
@@ -66,7 +66,7 @@ docker run -p 8081:80 <imageName>:<Tag>
 The -p or -publish flag is used to link a container port with a port from the host system.
 The left port is assigned to the host system and the right one to the container.
 
-> Docker makes a NAT-Rule inside a IP-Table. The example above would looks like that:
+> ⓘ Docker makes a NAT-Rule inside a IP-Table. The example above would looks like that:
 ```bash
 Host 0.0.0.0:8080 → 172.17.0.2:80
 Host 0.0.0.0:8081 → 172.17.0.3:80
@@ -105,7 +105,7 @@ Kill container
 ```bash
 docker kill <ContainerID>
 ```
-> Whats the difference between stop and kill container? 
+> ⓘ Whats the difference between stop and kill container? 
 > The command "docker stop" will shut down the container. The application also have the chance to shutdown its connections, end tasks and services before the container goes down.
 > The Command "docker kill" will immediately kill the application without giving it the chance to "gracefully shutting down"
 ---
@@ -121,7 +121,12 @@ docker ps -a
 ---
 Show detailed image info
 ```bash
-docker inspect <DockerImage>
+docker inspect <ImageID>
+```
+---
+Show detailed container info
+```bash
+docker container inspect <ContainerID>
 ```
 ---
 Show all local docker images
@@ -149,8 +154,19 @@ Remove container (container needs to be stopped first)
 docker container remove <ContainerID>
 ```
 ---
+Deletes all stopped container
+```bash
+docker container prune <ContainerID>
+```
+---
 Remove image
 ```bash
 docker image remove <ImageName>
 ```
+---
+Show docker disk usage
+```bash
+docker system df
+```
+> ⓘ Active images from the output means the amount of images that is referenced with a container 
 ---
