@@ -14,12 +14,10 @@
 
 ### 2. DevOps and Docker
 - **[2025-10-08]**:
-- Docker is a software for isolating applications with container virtualization
 - Install WSL, Ubuntu, Docker
 - Execute first docker run command for simple python/java/nodejs application docker image
-- Docker Container run by default inside a bridge network  
 - Running different container on different ports in wsl ubuntu
-- updating VsCode extensions, KeePass Db and more Apps 
+- updating VsCode extensions, KeePass Db and more Apps
 
 ### 3. Docker, Kubernetes on Google Kubernetes Engine
 - **[YYYY-MM-DD]**: 
