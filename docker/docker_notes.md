@@ -49,7 +49,7 @@ This Component will process everything. Build your images, start and stop your c
 
 ## Docker Commands
 Hints
-> ⓘ When selecting a container/image ID you can only select the first unique digits to use the ID
+> ⓘ When selecting a container/image ID you only have to select the first unique digits to use the container/image
 
 > ⓘ "docker run" is a shortcut for "docker container run" Same shortcut goes for similar commands
 
