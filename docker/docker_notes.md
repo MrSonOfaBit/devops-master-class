@@ -48,9 +48,14 @@ You can access different Docker Remote Clients too.
 This Component will process everything. Build your images, start and stop your containers, use local images or pull images from the docker registry
 
 ## Docker Commands
+Hints
+> When selecting a container/image ID you can only select the first unique digits to use the ID
+
+> "docker run" is a shortcut for "docker container run" Same shortcut goes for similar commands
+
 Run image inside a docker container
 ```bash
-docker run <DockerImage>
+docker container run <DockerImage>
 ```
 ---
 Publish Docker container on a host port
@@ -70,6 +75,8 @@ Host 0.0.0.0:8081 → 172.17.0.3:80
 Run multiple container inside one terminal
 ```bash
 docker run -d -p 8080:80 <imageName>:<Tag>
+docker run -d -p 8081:80 <imageName>:<Tag>
+docker run -d -p 8082:80 <imageName>:<Tag>
 ```
 ---
 See the logs of a container
@@ -85,6 +92,22 @@ Close container
 ```bash
 docker stop <ContainerID>
 ```
+Pause container
+```bash
+docker pause <ContainerID>
+```
+Unpause container
+```bash
+docker unpause <ContainerID>
+```
+---
+Kill container
+```bash
+docker kill <ContainerID>
+```
+> Whats the difference between stop and kill container? 
+> The command "docker stop" will shut down the container. The application also have the chance to shutdown its connections, end tasks and services before the container goes down.
+> The Command "docker kill" will immediately kill the application without giving it the chance to "gracefully shutting down"
 ---
 Show all running container
 ```bash
