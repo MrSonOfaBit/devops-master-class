@@ -47,7 +47,7 @@ You can access different Docker Remote Clients too.
 ### Docker Daemon
 This Component will process everything. Build your images, start and stop your containers, use local images or pull images from the docker registry
 
-## Build own Docker Image
+## Build Docker Image
 Dockerfile Example:
 
 ```Dockerfile
@@ -66,6 +66,20 @@ your_image/
 ├─ launch.py # application code
 └─ requirements.txt # requirements for your project
 ```
+Multi-Stage Build
+
+```Dockerfile
+# Build-Stage
+FROM golang:1.22 AS builder
+WORKDIR /app
+COPY . .
+RUN go build -o myapp .
+
+# Finale Image
+FROM alpine
+COPY --from=builder /app/myapp /usr/local/bin/myapp # take the build result from your app and use it for the final image
+CMD ["myapp"]
+```
 
 ## Docker Commands
 Hints
@@ -80,8 +94,8 @@ docker container run <DockerImage>
 ---
 Publish Docker container on a host port
 ```bash
-docker run -p 8080:80 <imageName>:<Tag>
-docker run -p 8081:80 <imageName>:<Tag>
+docker run -p 8080:80 <ImageName>:<Tag>
+docker run -p 8081:80 <ImageName>:<Tag>
 ```
 The -p or -publish flag is used to link a container port with a port from the host system.
 The left port is assigned to the host system and the right one to the container.
@@ -94,9 +108,9 @@ Host 0.0.0.0:8081 → 172.17.0.3:80
 ---
 Run multiple container inside one terminal
 ```bash
-docker run -d -p 8080:80 <imageName>:<Tag>
-docker run -d -p 8081:80 <imageName>:<Tag>
-docker run -d -p 8082:80 <imageName>:<Tag>
+docker run -d -p 8080:80 <ImageName>:<Tag>
+docker run -d -p 8081:80 <ImageName>:<Tag>
+docker run -d -p 8082:80 <ImageName>:<Tag>
 ```
 ---
 See the logs of a container
@@ -222,11 +236,33 @@ docker system prune -a
 ---
 Assign limited memory to a started container
 ```bash
-docker run -d -p 8080:80 -m 512m <imageName>:<Tag>
+docker run -d -p 8080:80 -m 512m <ImageName>:<Tag>
 ```
 ---
 Assign limited cpu use to a started container
 ```bash
-docker run -d -p 8080:80 --cpu-quota=50000 <imageName>:<Tag>
+docker run -d -p 8080:80 --cpu-quota=50000 <ImageName>:<Tag>
+```
+---
+Build Docker Image 
+```bash
+docker build -t <ImageName>:<Tag> .
+```
+> ⓘ The . at the end of the command is for the build-context. It tells docker the directory where it can use all files that are defined in the Dockerfile like COPY or ADD
+
+> ⓘ If your not using a tag docker will use the :latest tag
+
+> ⓘ Add your docker ID before the ImageName so you can push it to your docker hub account. Example: 
+> 
+> ```docker build -t myDockerID/myImage:0.0.1.RELEASE``` 
+---
+Login to docker hub
+```bash
+docker login
+```
+---
+After ```docker login``` push image to your docker hub account 
+```bash
+docker push <ImageName>:<Tag>
 ```
 ---

@@ -24,8 +24,9 @@
 - docker pause, unpause, stop & kill commands
 - update docker notes readme
 - **[2025-10-10]**:
+- understand config dockerfile
 - build docker image
-- understand dockerfile
+- push image to docker hub
 
 ### 3. Docker, Kubernetes on Google Kubernetes Engine
 - **[YYYY-MM-DD]**: 
