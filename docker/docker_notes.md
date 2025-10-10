@@ -47,6 +47,26 @@ You can access different Docker Remote Clients too.
 ### Docker Daemon
 This Component will process everything. Build your images, start and stop your containers, use local images or pull images from the docker registry
 
+## Build own Docker Image
+Dockerfile Example:
+
+```Dockerfile
+from python:3.12-slim # define base-image
+WORKDIR /app # define working directory for the image
+COPY . /app # copy local data for the image
+RUN pip install -r requirements.txt # execute commands while building the image
+EXPOSE 5000 # inform docker which port will be exposed
+CMD python ./launch.py # command that is executed at the start of the container
+```
+
+Local directory for the example above:
+```python
+your_image/
+├─ Dockerfile # file for building image
+├─ launch.py # application code
+└─ requirements.txt # requirements for your project
+```
+
 ## Docker Commands
 Hints
 > ⓘ When selecting a container/image ID you only have to select the first unique digits to use the container/image
