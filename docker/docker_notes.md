@@ -48,6 +48,8 @@ You can access different Docker Remote Clients too.
 This Component will process everything. Build your images, start and stop your containers, use local images or pull images from the docker registry
 
 ## Build Docker Image
+Your Dockerfile will contain everything that docker needs to know, to build a image based on your config. When building a image, docker saves the different steps inside a cache. So when you build your image on different versions, you can optimize your config files structure to build more efficient images.  
+
 Dockerfile Example:
 
 ```Dockerfile
@@ -66,20 +68,27 @@ your_image/
 ├─ launch.py # application code
 └─ requirements.txt # requirements for your project
 ```
-Multi-Stage Build
-
+Multi-Stage optimized build
 ```Dockerfile
 # Build-Stage
-FROM golang:1.22 AS builder
+FROM node:20 AS build
 WORKDIR /app
-COPY . .
-RUN go build -o myapp .
+COPY package.json /app # copy only package.json so docker can cache this step
+RUN npm install
+COPY . /app
+RUN npm run build
 
 # Finale Image
-FROM alpine
-COPY --from=builder /app/myapp /usr/local/bin/myapp # take the build result from your app and use it for the final image
-CMD ["myapp"]
+FROM nginx:stable-alpine
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
 ```
+This **Multi-Stage** Dockerfile has multiple advantages. 
+
+At first the use of the **cache** can speed up the process of building the image because the **dependency installation** will be executed and copied separately from the code. If the code changes but the package.json stays the same, docker uses the cache to skip the installation process and only change the code in the image building.
+
+The **size** of the image will also be reduced because in the first stage the application will be compromised into a **build folder**. The build folder is then used for the image to build and not the whole application code. 
 
 ## Docker Commands
 Hints
