@@ -18,13 +18,17 @@
 - Execute first docker run command for simple python/java/nodejs application docker image
 - Running different container on different ports in wsl ubuntu
 - updating VsCode extensions, KeePass Db and more Apps
-
-### 3. Docker, Kubernetes on Google Kubernetes Engine
-- **[2025-10-09]**: 
+- **[2025-10-09]**:
 - docker architecture
 - docker system commands
 - docker pause, unpause, stop & kill commands
 - update docker notes readme
+- **[2025-10-10]**:
+- build docker image
+- understand dockerfile
+
+### 3. Docker, Kubernetes on Google Kubernetes Engine
+- **[YYYY-MM-DD]**: 
 
 ### 4. Started with IaaC
 - **[YYYY-MM-DD]**: 
