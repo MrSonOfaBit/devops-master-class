@@ -200,3 +200,13 @@ docker system prune -a
 > - all images without at least one container associated to them
 > - all build cache
 ---
+Assign limited memory to a started container
+```bash
+docker run -d -p 8080:80 -m 512m <imageName>:<Tag>
+```
+---
+Assign limited cpu use to a started container
+```bash
+docker run -d -p 8080:80 --cpu-quota=50000 <imageName>:<Tag>
+```
+---
