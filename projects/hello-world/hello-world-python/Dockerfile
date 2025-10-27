@@ -4,7 +4,7 @@ COPY requirements.txt /app/requirements.txt
 RUN pip install -r requirements.txt
 EXPOSE 5000
 COPY . /app
-CMD ["python", "./launch.py"]
-
+ENTRYPOINT ["python", "launch.py"]
+CMD ["echo", "Hello World"]
 #COPY requirements.txt /app/requirements.txt
 #ENTRYPOINT ["python", "./launch.py"]

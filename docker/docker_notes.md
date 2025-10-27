@@ -52,6 +52,7 @@ Your Dockerfile will contain everything that docker needs to know, to build a im
 
 ### Dockerfile Examples
 
+#### Simple Docker File
 ```Dockerfile
 from python:3.12-slim # define base-image
 WORKDIR /app # define working directory for the image
@@ -68,7 +69,7 @@ your_image/
 ├─ launch.py # application code
 └─ requirements.txt # requirements for your project
 ```
-Multi-Stage optimized build
+#### Multi-Stage optimized build
 ```Dockerfile
 # Build-Stage
 FROM node:20 AS build
@@ -91,6 +92,36 @@ This **Multi-Stage** Dockerfile has multiple advantages.
 At first the use of the **cache** can speed up the process of building the image because the **dependency installation** will be executed and copied separately from the code. If the code changes but the package.json stays the same, docker uses the cache to skip the installation process and only change the code in the image building. Pushing your image to the docker hub will also take less time if you use the cache efficient.
 
 The **size** of the image will also be reduced because in the first stage the application will be compromised into a **build folder**. The build folder is then used for the image to build and not the whole application code.
+
+### Entrypoint and CMD
+Both are commands that define what will be executed at the start of the container. You can define and use one or both inside the dockerfile. 
+
+#### Entrypoint
+With Entrypoint you define commands that will always be executed and cannot be changed. You can add arguments but replacing is not possible. You can add arguments inside a JSON Array or as a string.
+
+Example with JSON Array: 
+```Dockerfile
+FROM ubuntu:22:04
+Entrypoint ["python", "launch.py"]
+```
+
+Example with string (not recommended):
+```Dockerfile
+FROM ubuntu:22:04
+Entrypoint python launch.py
+```
+
+#### CMD
+CMD will be your default command that will be executed if no other argument is passed. If you add a argument for your docker run command it overrides the default you defined inside the docker file.
+
+Example:
+
+```Dockerfile
+FROM ubuntu:22:04
+CMD ["echo", "Hello World"]
+```
+
+If you run `docker run my-image echo "Hi There"` it will override the arguments inside your dockerfile.
 
 ## Docker Commands
 Hints
