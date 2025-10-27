@@ -14,8 +14,8 @@ Docker is supported on multiple platforms. You run Docker images on your local m
 ### Light-Weight & Isolation
 Virtual Machines are one way to use applications inside a isolated environment. But a VM needs Hardware, Host OS, Hypervisor and for every VM a Client Os, Software and Application is needed. Because of that VM's are Heavy-Weight.
 
-For docker you need Hardware or Cloud-Infrastructure, a Host Os and a Docker Engine. Inside the Docker Engine you can run any kind of Container. E
-- very container shares the kernel of the Host-System
+For docker you need Hardware or Cloud-Infrastructure, a Host Os and a Docker Engine. Inside the Docker Engine you can run any kind of Container.
+- Every container shares the kernel of the Host-System
 - Containers images are made of different layers. If multiple container use the same base-image it will be shared
 - Every container could be described as a isolated linux process. You don't need an extra booting process or initializing for every new container 
 
@@ -86,7 +86,7 @@ CMD ["nginx", "-g", "daemon off;"]
 ```
 This **Multi-Stage** Dockerfile has multiple advantages. 
 
-At first the use of the **cache** can speed up the process of building the image because the **dependency installation** will be executed and copied separately from the code. If the code changes but the package.json stays the same, docker uses the cache to skip the installation process and only change the code in the image building.
+At first the use of the **cache** can speed up the process of building the image because the **dependency installation** will be executed and copied separately from the code. If the code changes but the package.json stays the same, docker uses the cache to skip the installation process and only change the code in the image building. Pushing your image to the docker hub will also take less time if you use the cache efficient.
 
 The **size** of the image will also be reduced because in the first stage the application will be compromised into a **build folder**. The build folder is then used for the image to build and not the whole application code. 
 
