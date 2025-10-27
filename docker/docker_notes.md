@@ -50,7 +50,7 @@ This Component will process everything. Build your images, start and stop your c
 ## Build Docker Image
 Your Dockerfile will contain everything that docker needs to know, to build a image based on your config. When building a image, docker saves the different steps inside a cache. So when you build your image on different versions, you can optimize your config files structure to build more efficient images.  
 
-Dockerfile Example:
+### Dockerfile Examples
 
 ```Dockerfile
 from python:3.12-slim # define base-image
@@ -86,9 +86,11 @@ CMD ["nginx", "-g", "daemon off;"]
 ```
 This **Multi-Stage** Dockerfile has multiple advantages. 
 
+### Docker Cache
+
 At first the use of the **cache** can speed up the process of building the image because the **dependency installation** will be executed and copied separately from the code. If the code changes but the package.json stays the same, docker uses the cache to skip the installation process and only change the code in the image building. Pushing your image to the docker hub will also take less time if you use the cache efficient.
 
-The **size** of the image will also be reduced because in the first stage the application will be compromised into a **build folder**. The build folder is then used for the image to build and not the whole application code. 
+The **size** of the image will also be reduced because in the first stage the application will be compromised into a **build folder**. The build folder is then used for the image to build and not the whole application code.
 
 ## Docker Commands
 Hints
