@@ -47,6 +47,12 @@ You can access different Docker Remote Clients too.
 ### Docker Daemon
 This Component will process everything. Build your images, start and stop your containers, use local images or pull images from the docker registry
 
+## Microservices
+You can describe microservices as a architecture type. You split software in small self-contained services that fulfill one purpose. Every microservice can be run, test and deployed regardless of other services. Docker container are a perfect way to develop and deploy these microservices. How different services communicate with each other will be shown in the example below.
+
+### Microservices CE & CC
+For this example there will be used to created microservices. The `Currency Conversion Service` and the `Currency Exchange Service`. Both services will help you to determine a specific currency.
+
 ## Build Docker Image
 Your Dockerfile will contain everything that docker needs to know, to build a image based on your config. When building a image, docker saves the different steps inside a cache. So when you build your image on different versions, you can optimize your config files structure to build more efficient images.  
 
