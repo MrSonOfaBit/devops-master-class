@@ -48,10 +48,22 @@ You can access different Docker Remote Clients too.
 This Component will process everything. Build your images, start and stop your containers, use local images or pull images from the docker registry
 
 ## Microservices
-You can describe microservices as a architecture type. You split software in small self-contained services that fulfill one purpose. Every microservice can be run, test and deployed regardless of other services. Docker container are a perfect way to develop and deploy these microservices. How different services communicate with each other will be shown in the example below.
+You can describe microservices as a `architecture type`. You split software in small self-contained services that fulfill one purpose. Every microservice can be run, test and deployed regardless of other services. Docker container are a perfect way to develop and deploy these microservices. How different services communicate with each other will be shown in the example below.
 
-### Microservices CE & CC
-For this example there will be used to created microservices. The `Currency Conversion Service` and the `Currency Exchange Service`. Both services will help you to determine a specific currency. Sometimes a service needs to know the location of another service for api calls. You can define host addresses hardcoded or with environment variables. 
+### Microservices Communication
+Sometimes a service needs to know the location of another service for api calls. You can define host addresses hardcoded or with environment variables. 
+
+## Docker Networks
+Docker use Networks to manage containers. The default networks are `bridge`, `host` and `none`. You can display every network with the command `docker network ls`.
+
+### Bridge Network
+The `bridge network` will be the default network for every container that will be run. The `subnet` is `172.17.0.0/16` and the `Gateway` IP is `172.17.0.1`. When creating a container docker will automatically assign an IPv4 Address for the container. The Bridge Network was in Docker 1.10 designed for a local Testnetwork and had no `DNS` function. Now containers can ping each other in the bridge network but cannot call each other by name due the missing DNS feature.
+
+### Host Network
+The Host Network shares the Network-Stack with the `Hostsystem`. The container assigned to this network uses the `Host IP Address` and communicate with other containers via `Localhost`.
+
+### None Network
+Containers assigned to this network will be completely cut off from the internet or local networks. The container has no IP Address an can only communicate inside the container. 
 
 ## Build Docker Image
 Your Dockerfile will contain everything that docker needs to know, to build a image based on your config. When building a image, docker saves the different steps inside a cache. So when you build your image on different versions, you can optimize your config files structure to build more efficient images.  
@@ -75,6 +87,7 @@ your_image/
 ├─ launch.py # application code
 └─ requirements.txt # requirements for your project
 ```
+
 #### Multi-Stage optimized build
 ```Dockerfile
 # Build-Stage
