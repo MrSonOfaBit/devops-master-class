@@ -50,6 +50,18 @@ This Component will process everything. Build your images, start and stop your c
 ## Microservices
 You can describe microservices as a `architecture type`. You split software in small self-contained services that fulfill one purpose. Every microservice can be run, test and deployed regardless of other services. Docker container are a perfect way to develop and deploy these microservices. How different services communicate with each other will be shown in the example below.
 
+### Container Communication
+Sometimes a service needs to know the location of another service for api calls. You can define host addresses hardcoded or with environment variables. Container are present in the default bridge network and cannot talk to each other using localhost. Thats because it has limited DNS and communication rules. The default bridge network  doesn't have a DNS resolver. You could ping another container but that unreliable because IPs change every time you restart containers. 
+
+One way to build a connection between two container is creating a `link` but this step is not recommended anymore. 
+```bash
+docker run -d --name container1 myimage1
+docker run -d --name container2 --link container1:alias1 myimage2
+```
+
+## Bridge Network
+The default networking mode in docker is called a bridge network. You can use `docker network ls` to see all docker networks and `docker network inspect bridge` to see which container are part of the specific bridge network.
+
 ### Microservices Communication
 Sometimes a service needs to know the location of another service for api calls. You can define host addresses hardcoded or with environment variables. 
 
