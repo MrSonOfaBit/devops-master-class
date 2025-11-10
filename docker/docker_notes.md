@@ -1,7 +1,5 @@
 # Course Docker Notes
-
-- Docker is a software for isolating applications with container virtualization
-- Docker Container run by default inside a bridge network. Every container has its own isolated IP address
+Docker is a software for isolating applications with container virtualization. Docker Container run by default inside a bridge network. Every container has its own isolated IP address
 
 ## Docker Advantage
 
@@ -59,14 +57,12 @@ docker run -d --name container1 myimage1
 docker run -d --name container2 --link container1:alias1 myimage2
 ```
 
-## Bridge Network
+## Docker Networks
+Docker use Networks to manage containers. The default networks are `bridge`, `host` and `none`.
 The default networking mode in docker is called a bridge network. You can use `docker network ls` to see all docker networks and `docker network inspect bridge` to see which container are part of the specific bridge network.
 
 ### Microservices Communication
 Sometimes a service needs to know the location of another service for api calls. You can define host addresses hardcoded or with environment variables. 
-
-## Docker Networks
-Docker use Networks to manage containers. The default networks are `bridge`, `host` and `none`. You can display every network with the command `docker network ls`.
 
 ### Bridge Network
 The `bridge network` will be the default network for every container that will be run. The `subnet` is `172.17.0.0/16` and the `Gateway` IP is `172.17.0.1`. When creating a container docker will automatically assign an IPv4 Address for the container. The Bridge Network was in Docker 1.10 designed for a local Testnetwork and had no `DNS` function. Now containers can ping each other in the bridge network but cannot call each other by name due the missing DNS feature.
