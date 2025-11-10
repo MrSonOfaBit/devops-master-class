@@ -154,6 +154,48 @@ CMD ["echo", "Hello World"]
 
 If you run `docker run my-image echo "Hi There"` it will override the arguments inside your dockerfile.
 
+## Docker Compose
+Docker Compose lets you manage and configure multiple containers through a single configuration file. The File is structured in the yaml format and let you define multiple containers. With that you can run and upscale you containers. With docker compose you reduce the length of you commands in the cli by configuring the yaml file. 
+
+It is recommended to name the config file `docker-compose.yaml` since this is the default name and docker will look for this filename by default. However you can name the file different and still select and run it. 
+
+
+### Docker Compose Config File
+A normal command for running a container: `docker run -d -p 8100:8100 --env CURRENCY_EXCHANGE_SERVICE_HOST=http://currency-exchange --name=currency-conversion --network=currency-network in28min/currency-conversion:0.0.1-RELEASE`
+
+Now with the Configuration File `docker-compose.yaml`:
+```yaml
+version: "3.9"
+services:
+    currency-conversion:
+        image: in28min/currency-conversion:0.0.1-RELEASE
+        container_name: currency-conversion
+        environment:
+            CURRENCY_EXCHANGE_SERVICE_HOST: "http://currency-exchange"
+        ports:
+            - "8100:8100"
+        networks:
+            - currency-network
+networks:
+    currency-network:
+        driver: bridge
+
+```
+Go to the path where the config file is and type `docker compose up` to start all container defined in the config file.
+This allows you to define containers once and manage them with a short command.
+
+### Docker Compose Commands
+
+`docker compose up` - run all services from the docker compose config file
+`docker compose down` - stop all services, remove containers and networks
+`docker compose stop` - stop services and containers. Containers and networks stay
+`docker compose start` - start stopped containers
+`docker compose restart` - restart container (use it if env variables changed for example)
+`docker compose ps` - shows status of containers run by docker compose config
+`docker compose logs` - show logs
+`docker compose build` - rebuild images if you use dockerfile inside the project
+`docker compose pull` - download images from the registry
+
 ## Docker Commands
 Hints
 > ⓘ When selecting a container/image ID you only have to select the first unique digits to use the container/image
