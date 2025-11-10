@@ -183,13 +183,22 @@ This allows you to define containers once and manage them with a short command.
 ### Docker Compose Commands
 
 `docker compose up` - run all services from the docker compose config file
+
 `docker compose down` - stop all services, remove containers and networks
-`docker compose stop` - stop services and containers. Containers and networks stay
+
+`docker compose stop` - stop services and 
+containers. Containers and networks stay
+
 `docker compose start` - start stopped containers
+
 `docker compose restart` - restart container (use it if env variables changed for example)
+
 `docker compose ps` - shows status of containers run by docker compose config
+
 `docker compose logs` - show logs
+
 `docker compose build` - rebuild images if you use dockerfile inside the project
+
 `docker compose pull` - download images from the registry
 
 ## Docker Commands
