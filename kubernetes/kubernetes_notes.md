@@ -13,3 +13,27 @@ Here are some kubernetes advantages explained in a short term.
 4. **Self-Managing**: If containers fail or nodes die, it can restart and reschedule containers
 
 ## Kubernetes Cluster
+![Kubernetes Cluster Architecture](https://kubernetes.io/images/docs/kubernetes-cluster-architecture.svg)
+A Kubernetes Cluster is group of `Worker Nodes` and a `Control Plane` (Master Node). The Control Plane manages the worker nodes while the worker nodes host `pods` in order to run one or more container for each pod.
+
+### Control Plane
+The Control Plan manage the state of the cluster. It is responsible for the health of the nodes, for scaling or updating you cluster. There are 5 main components.
+
+#### **kube-apiserver**
+This component exposes the `Kubernetes HTTP API`. It validates and configures data for api objects like pods, services, replication controllers and more. 
+
+#### **etcd**
+The shortcut stands for `distributed etc directory`. It is the database for the clusters state saving node, pods, secrets etc.
+
+#### **kube-scheduler**
+new created pods get a node to run on from this controller.
+
+#### **kube-controller-manager**
+It is a collection of controllers watching different parts of the cluster.The state from the etcd is compered with the actual state of the cluster through the api server.
+-  **Node Controller:** Respond to node states and reports if they go down
+-  **Job Controller:** Create Pods for every job that executes a task
+-  **EndpointSlice Controller:** Updates endpoint and manage Ip routes for services
+-  **ServiceAccount Controller:** manage ServiceAccounts for pods and sets api token for them
+
+#### **cloud-controller-manager**
+Manages and connects your cluster to the clouds provider api.
