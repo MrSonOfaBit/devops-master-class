@@ -3,6 +3,7 @@ Kubernetes (short K8s) is an open source system for container orchestration. It 
 
 > ⓘ For the leaning course I use microK8s on a ubuntu wls. All examples and approaches are based on the microK8s system. See more under [MicroK8s documentation](https://microk8s.io/docs)
 
+---
 
 ## Core Functions and benefits
 Here are some kubernetes advantages explained in a short term.
@@ -11,6 +12,8 @@ Here are some kubernetes advantages explained in a short term.
 2. **Orchestrate containers**: You can group containers into logical groups called pods and manage them from cluster of virtual or physical machines
 3. **Ensure application state**: Kubernetes will work on maintain your declared state for example having always a number of replicas running from special container
 4. **Self-Managing**: If containers fail or nodes die, it can restart and reschedule containers
+
+---
 
 ## Kubernetes Cluster
 ![Kubernetes Cluster Architecture](https://kubernetes.io/images/docs/kubernetes-cluster-architecture.svg)
@@ -36,4 +39,11 @@ It is a collection of controllers watching different parts of the cluster.The st
 -  **ServiceAccount Controller:** manage ServiceAccounts for pods and sets api token for them
 
 #### **cloud-controller-manager**
-Manages and connects your cluster to the clouds provider api.
+Manages and connects your cluster to the clouds provider api. If you run K8s on a local machine the cluster does not have a cloud controller manager.
+
+---
+
+## Pods
+![Kubernetes Pod](https://matthewpalmer.net/kubernetes-app-developer/articles/networking-overview.png)
+
+A Pod is a collection of containers that run on a host. A node can contain multiple pods and a pod contain multiple containers. 
