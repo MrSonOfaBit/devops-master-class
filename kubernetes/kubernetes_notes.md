@@ -41,9 +41,21 @@ It is a collection of controllers watching different parts of the cluster.The st
 #### **cloud-controller-manager**
 Manages and connects your cluster to the clouds provider api. If you run K8s on a local machine the cluster does not have a cloud controller manager.
 
+### Node 
+A node can be a virtual or a physical machine. It is managed by the Control Plane and contain services needed to run pods. Normally you have multiple Nodes inside a Cluster but it depends on your environment and amount of workload. 
+
 ---
 
-## Pods
+## Workloads
+Workloads are applications that run on Kubernetes. These Workloads are run in one or a set of pods.
+
+### Pods
 ![Kubernetes Pod](https://matthewpalmer.net/kubernetes-app-developer/articles/networking-overview.png)
 
-A Pod is a collection of containers that run on a host. A node can contain multiple pods and a pod contain multiple containers. 
+A Pod is a collection of containers that run on a host. A node can contain multiple pods and a pod contain multiple containers. It is the smallest deployable unit in Kubernetes.
+
+### Deployments
+Deployments manage a set of Pods. Your defined state will be applied through the deployment. You can define which image should be used and the amount of pods by define the replica number. 
+
+### ReplicaSet 
+The ReplicaSet is managed automatically by the deployment. It maintain a stable amount of replica pods. If one pod gets deleted or is removed, a new pod will be created immediately.  
