@@ -1,4 +1,12 @@
 # Course Docker Notes
+
+
+This Readme takes note from the in28Minutes [DevOps for Beginners](https://www.udemy.com/course/devops-with-docker-kubernetes-and-azure-devops) course from udemy. The topic is **Section 2** `Start DevOps with Docker`
+
+The project is forked from the github repo [devops-master-class](https://github.com/in28minutes/devops-master-class)
+
+## Introduction
+
 Docker is a software for isolating applications with container virtualization. Docker Container run by default inside a bridge network. Every container has its own isolated IP address
 
 ## Docker Advantage

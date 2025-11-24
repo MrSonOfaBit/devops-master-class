@@ -1,4 +1,12 @@
 # Course Kubernetes Notes
+
+
+This Readme takes note from the in28Minutes [DevOps for Beginners](https://www.udemy.com/course/devops-with-docker-kubernetes-and-azure-devops) course from udemy. The topic is **Section 3** `DevOps with Docker and Kubernetes on Google Kubernetes Engine`
+
+The project is forked from the github repo [devops-master-class](https://github.com/in28minutes/devops-master-class)
+
+## Introduction
+
 Kubernetes (short K8s) is an open source system for container orchestration. It helps you to automate all the steps you have to made in docker engine by yourself like deploying, scaling and managing containerized applications.
 
 > ⓘ For the leaning course I use microK8s on a ubuntu wls. All examples and approaches are based on the microK8s system. See more under [MicroK8s documentation](https://microk8s.io/docs)
