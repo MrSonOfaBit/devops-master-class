@@ -68,3 +68,44 @@ Deployments manage a set of Pods. Your defined state will be applied through the
 
 ### ReplicaSet 
 The ReplicaSet is managed automatically by the deployment. It maintain a stable amount of replica pods. If one pod gets deleted or is removed, a new pod will be created immediately.  
+
+
+## Kubernetes Commands
+
+### General Commands
+
+`microk8s status` - get basic status overview over K8s and addons list
+
+`microk8s dashboard-proxy` - launch local K8s dashboard
+
+`microk8s add-node` - output  instruction command to execute on your desired instance to add it to the cluster
+
+`microk8s join <IP>:<hashValue> --worker` - command executed on a instance to add it to the cluster as a worker node
+
+### Deployment Commands
+
+`microk8s kubectl create deployment <deploymentName> --image=<imageName>` - create a deployment with a default replicaset of one and a pod with a container running the image
+
+`microk8s kubectl expose deployment <deploymentName> --type=<> --port=<>` - creates a service that expose the deployment so it can be reached outside the cluster
+> ⓘ For `--type=` you can use `LoadBalancer` if your cluster use a LoadBalancer. If so it gets a external IP. Use `NodePort` to open a port on every node in the range of 30000–32767. Traffic will be forwarded from <WLS IP>:<NodePort> to the pods.
+
+`microk8s kubectl get deployments` - get all deployments
+
+`microk8s kubectl scale deployment hello-world-rest-api --replicas=3` - scale the replicaset to a desired number
+
+`microk8s kubectl get replicaset` - get all replicasets
+
+`microk8s kubectl set image deployment/<deploymentName> <deploymentName>=<imageName>` - change image of deployment 
+
+### Pod Commands
+`microk8s kubectl get pods -o wide` - get all created pods
+
+`microk8s kubectl delete pods --field-selector status.phase!=Running` - delete all pods if there **not** running
+
+## Multipass Commands
+
+`multipass shell <node>` connect to node
+
+`multipass info <node>` get node information
+
+`multipass list` - list all nodes
