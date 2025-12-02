@@ -97,7 +97,12 @@ The Service is a method in K8s to expose your application that is running on one
 
 `microk8s kubectl get replicaset` - get all replicasets
 
-`microk8s kubectl set image deployment/<deploymentName> <deploymentName>=<imageName>` - change image of deployment 
+`microk8s kubectl set image deployment/<deploymentName> <deploymentName>=<imageName> --record=true` - change image of deployment 
+> ⓘ `--record=true` save the update in the rollout history for deployments
+
+`microk8s kubectl rollout history deployment <deploymentName>` - list all the rollout's of a specific deployment 
+
+`microk8s kubectl rollout undo deployment <deploymentName> --to-revision=<Number>` - rollback to a older deployment version. To see the numbers for the deployments, see rollout history command above and look at the `Revision` section
 
 ### Pod Commands
 `microk8s kubectl get pods -o wide` - get all created pods
