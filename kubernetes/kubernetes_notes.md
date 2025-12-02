@@ -9,7 +9,8 @@ The project is forked from the github repo [devops-master-class](https://github.
 
 Kubernetes (short K8s) is an open source system for container orchestration. It helps you to automate all the steps you have to made in docker engine by yourself like deploying, scaling and managing containerized applications.
 
-> ⓘ For the leaning course I use microK8s on a ubuntu wls. All examples and approaches are based on the microK8s system. See more under [MicroK8s documentation](https://microk8s.io/docs)
+> ⓘ For the leaning course I use microK8s on a ubuntu wls. All examples and approaches are based on the microK8s system. See more under [MicroK8s Documentation](https://microk8s.io/docs). 
+> I also used multipass to add multiple nodes to the cluster as small debian virtual machines. [Multipass Docs](https://documentation.ubuntu.com/multipass/latest/?_gl=1*1ybsgaq*_gcl_au*MTAyMTg3Mjk5MC4xNzYyNzczODc4)
 
 ---
 
