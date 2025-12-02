@@ -69,6 +69,8 @@ Deployments manage a set of Pods. Your defined state will be applied through the
 ### ReplicaSet 
 The ReplicaSet is managed automatically by the deployment. It maintain a stable amount of replica pods. If one pod gets deleted or is removed, a new pod will be created immediately.  
 
+## Services
+The Service is a method in K8s to expose your application that is running on one or endpoints (usually pods). Pods may change in numbers and every pod gets different IP addresses, however the service defines policies how the pods are accessible for the frontend and no backend changes will be noticed for the frontend.
 
 ## Kubernetes Commands
 
